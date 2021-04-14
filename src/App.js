@@ -1,5 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 import TodoHead from "./components/TodoHead";
+import TodoItem from "./components/TodoItem";
 import TodoList from "./components/TodoList";
 import TodoTemplate from "./components/TodoTemplate";
 
