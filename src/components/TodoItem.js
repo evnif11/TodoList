@@ -16,17 +16,19 @@ const Remove = styled.div`
   display: none;
 `;
 
+
 const TodoItemBlock = styled.div`
   display: flex;
   align-items: center;
   padding-top: 12px;
   padding-bottom: 12px;
   &:hover {
-    ${Remove} (
+    ${Remove} {
       display: initial;
-    )
+    }
   }
 `;
+// display initial : remove 아이콘 원래대로 보여주기
 
 const CheckCircle = styled.div`
   width: 32px;
@@ -53,7 +55,7 @@ const Text = styled.div`
   ${props => props.done && css`color: #ced4da;`}
 `;
 
-const TodoItem = ({id, done, text}) => {
+const TodoItem = ({ done, text }) => {
   return(
     <TodoItemBlock>
       <CheckCircle done={done}>{done && <MdDone />}</CheckCircle>
