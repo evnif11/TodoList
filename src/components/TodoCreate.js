@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { MdAdd } from "react-icons/md";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 
 const CreateButton = styled.button`
@@ -34,6 +34,16 @@ const CreateButton = styled.button`
 
   transition: 0.125s all ease-in;
 
+  ${props => props.open && css`
+    background: #ff6b6b;
+    &:hover {
+      background: #ff8787;
+    }
+    &:active {
+      background: #fa5252;
+    }
+    transform: translate(-50%, 50%) rotate(45deg);
+    `}
 `;
 
 const InsertFormPositioner = styled.div`
@@ -68,11 +78,13 @@ const TodoCreate = () => {
 
   return (
     <div>
-      <InsertFormPositioner>
+      { open && (
+        <InsertFormPositioner>
         <InsertForm>
           <Input autoFocus placeholder="할 일을 입력 후 Enter를 누르세요"></Input>
         </InsertForm>
       </InsertFormPositioner>
+      )}
       <CreateButton onClick={onToggle} open={open}>
         <MdAdd />
       </CreateButton>
