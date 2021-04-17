@@ -1,6 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { MdDone, MdDelete } from 'react-icons/md';
+import { useTodoDispatch } from '../TodoContext';
 
 
 const Remove = styled.div`
@@ -44,7 +45,7 @@ const CheckCircle = styled.div`
   ${props => props.done && css`
     border: 1px solid #38d9a9;
     color: #38d9a9;
-  `}
+    `}
 `;
 
 
@@ -55,16 +56,19 @@ const Text = styled.div`
   ${props => props.done && css`color: #ced4da;`}
 `;
 
-const TodoItem = ({ done, text }) => {
+const TodoItem = ({ id, done, text }) => {
+  const dispatch = useTodoDispatch();
+  const onToggle = () => dispatch({type:'TOGGLE', id})
+  const onRemove = () => dispatch({type:'REMOVE', id})
   return(
     <TodoItemBlock>
-      <CheckCircle done={done}>{done && <MdDone />}</CheckCircle>
+      <CheckCircle done={done} onClick={onToggle}>{done && <MdDone />}</CheckCircle>
       <Text done={done}>{text}</Text>
-      <Remove>
+      <Remove onClick={onRemove}>
         <MdDelete />
       </Remove>
     </TodoItemBlock>
   );
 }
 
-export default TodoItem;
+export default React.memo(TodoItem);
